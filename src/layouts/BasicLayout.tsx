@@ -1,12 +1,16 @@
 import { ReactNode } from "react";
-import { Layout, Menu, theme } from "antd";
+import { Layout, Menu } from "antd";
 
 const { Header, Content, Footer } = Layout;
 
-const items = new Array(15).fill(null).map((_, index) => ({
-  key: index + 1,
-  label: `nav ${index + 1}`,
-}));
+const items = [
+  { key: "home", label: "HOME" },
+  { key: "about-us", label: "ABOUT US" },
+  { key: "our-team", label: "OUR TEAM" },
+  { key: "marketplace", label: "MARKETPLACE" },
+  { key: "roadmap", label: "ROADMAP" },
+  { key: "whitepaper", label: "WHITEPAPER" },
+];
 
 interface IProps {
   children?: ReactNode;
@@ -15,14 +19,20 @@ interface IProps {
 const BasicLayout = (props: IProps) => {
   const { children } = props;
 
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
   return (
-    <Layout>
-      <Header style={{ display: "flex", alignItems: "center" }}>
-        <div className="demo-logo" />
+    <Layout
+      style={{
+        minHeight: "100vh",
+        backgroundColor: `red`,
+      }}
+    >
+      <Header
+        style={{
+          display: "flex",
+          alignItems: "center",
+          background: "transparent",
+        }}
+      >
         <Menu
           theme="dark"
           mode="horizontal"
@@ -31,20 +41,9 @@ const BasicLayout = (props: IProps) => {
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
-      <Content style={{ padding: "0 48px" }}>
-        <div
-          style={{
-            background: colorBgContainer,
-            minHeight: 280,
-            padding: 24,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          {children}
-        </div>
-      </Content>
+      <Content style={{ padding: "0 48px" }}>{children}</Content>
       <Footer style={{ textAlign: "center" }}>
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        ©2023 Tyme - Edit. All Rights reserved. 
       </Footer>
     </Layout>
   );
